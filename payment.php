@@ -124,7 +124,6 @@ include 'header.php';
     $Id=$_SESSION['buy']; 
      //echo"Buy Button selected successfully";
        
-        
         $sql ="SELECT * FROM organise WHERE id='$Id'";
         $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
         
