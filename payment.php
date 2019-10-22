@@ -138,17 +138,37 @@ include 'header.php';
         <hr class="my-4">
         <div class="box" col-sm-6 id="input1"> Amount :<?php echo $record['price'];?> x 
         </div>
-        <div class="box"><input type="text" class="" style="width:300px; " name="input2" id="input2" placeholder="Total Number of Tickets" name="price">
+        <div class="box">
+        <form method="post">
+        <input type="text" class="" style="width:300px; " name="input2" id="input2" placeholder="Total Number of Tickets" name="price">
         </div>
         <br>
         <br>
-        <a class="btn btn-primary " href="#" name="calc" role="button" onclick="calulate">Calculate</a>
-        <a class="btn btn-primary " href="#" role="button">Check-Out</a>
+        <button class="btn btn-primary " href="#" name="calc" role="button" onclick="calulate" type="submit" value="send">Calculate</a></button>
+        </form>
+        <!-- <a class="btn btn-primary " href="#" role="button">Check-Out</a> -->
          <br>
         <br>
         
         
-        <p class="lead" id="output">Total Amount : <?php echo "$res";?>
+        <p class="lead" id="output">Total Amount : 
+        <?php
+        $num2=$record['price'];
+        echo "hi";
+
+        if (isset($_SESSION['calc'])){
+          echo "hi1";
+                  $num1  = intval($_POST['input2']);
+                  
+                  echo $num1*$num2;
+              }
+
+              else{
+                  echo '';
+              }
+
+
+              ?>
         
         
         </div>
@@ -169,11 +189,11 @@ include 'header.php';
 ?>
  <?php include 'footer.php' 
     ?>
-<script>
+<!-- <script>
 function calculate(){
 var num1 = <?php echo $record['price'] ?>;
 var num2=document.getElementById('input2').value;
 var res=parseInt(num1)*parseInt(num2);
 document.write(res);
 }
-</script>
+</script> -->
