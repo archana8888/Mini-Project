@@ -100,9 +100,9 @@ include 'header.php';
             <a class="nav-link" href="includes/logout.inc.php" ><i class="fas fa-user-minus" style="padding:5px"></i>Logout</a>
            </li>';
            echo'<li class="nav-item">
-           <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i></a>
+           <a class="nav-link" href="payment2.php"><i class="fas fa-shopping-cart"></i></a>
            </li>';
-           echo '<li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-clipboard"></i></a></li>';
+           echo '<li class="nav-item"><a class="nav-link" href="cart.php"><i class="fas fa-clipboard"></i></a></li>';
            }
           else
            {
