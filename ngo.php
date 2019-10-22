@@ -179,8 +179,10 @@ while( $record = mysqli_fetch_array($resultset) ) {
           PRICE: Rs.<?php echo $record['price']; ?><hr>
           CONTACT:<br><?php echo $record['email']; ?></div></div>
     </div>
+    <?php //echo $record['id'];?>
+    <?php $_SESSION['buy']=$record['id']?>
     
-       <a href="payment.php" id="btn" id="<?php echo $record['id'];?>" type="button"  class="btn btn-primary stretched-link middle">BUY TICKETS</a>
+       <a href="payment.php" id="btn" name="buy" type="button"  class="btn btn-primary stretched-link middle">BUY TICKETS</a>
 </div>
 </div>
 </section>
@@ -192,7 +194,7 @@ while( $record = mysqli_fetch_array($resultset) ) {
 </div>
 <script text="text/javascript">
 $('input[type=button]').click(function(e){
-  var id=e.target.id;
+  var id=e.target.name;
   
   $.ajax({
     		type:'POST',
