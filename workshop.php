@@ -2,6 +2,59 @@
 session_start();
 include 'header.php';
 ?>
+<html>
+  <head>
+  <style>
+.container {
+  position: relative;
+  width: 50%;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.container:hover .image {
+  opacity: 0.3;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+#display{
+  float:left;
+  margin: 35px 35px 35px 35px;
+}
+#foot{
+  width:100%;
+  float:right;
+}
+
+</style>
+</head>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +73,7 @@ include 'header.php';
     </head>
 <!-- NAVBAR -->
   <header>
+    
   <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
   <div class="container-fluid">
     <li class="navbar-brand "><i class="fas fa-star-of-david" style="font-size:30px;color: white padding:45px"></i> Polaris</li>
@@ -32,10 +86,10 @@ include 'header.php';
    <div class="collapse navbar-collapse" id="navbarResponsive">
      <ul class="navbar-nav ml-auto">
       <li>
-         <a class="nav-link active " href="index.php"><i class="fas fa-home" style="padding:5px"></i>Home</a>
+         <a class="nav-link  " href="index.php"><i class="fas fa-home" style="padding:5px"></i>Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="event.php"><i class="fas fa-calendar-week" style="padding:5px"></i>Events</a>
+        <a class="nav-link active" href="event.php"><i class="fas fa-calendar-week" style="padding:5px"></i>Events</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="organise.php"><i class="fas fa-marker" style="padding:4px"></i>Organise</a>
@@ -97,9 +151,6 @@ include 'header.php';
 </div>
 </nav>
 </header>
-
-<main>
-
 
 <body background="images/surface.jpg">
 
