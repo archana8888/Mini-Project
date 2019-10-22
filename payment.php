@@ -7,19 +7,22 @@ include 'header.php';
 //Initialize message variable
 $conn= mysqli_connect("localhost","root","");
   $db = mysqli_select_db($conn,'loginsystem');
+  $Id=$_POST['name'];
 if (isset($_SESSION['userUId'])) 
 {
     echo"1";
-    $Id=$_POST['name'];
+   
+    
+   
     if(isset($_POST['$id']))
     {
 
         
         echo"Buy Button selected successfully";
        
-        
         $sql ="SELECT * FROM organise WHERE id='$Id'";
         $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
+        
         if(!$resultset)
         {
             header("Location: ../index.php?error=sqlerror");

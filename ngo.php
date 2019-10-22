@@ -180,7 +180,7 @@ while( $record = mysqli_fetch_array($resultset) ) {
           CONTACT:<br><?php echo $record['email']; ?></div></div>
     </div>
     
-       <a href="payment.php" id="btn" name="<?php echo $record['id'];?>" type="submit"  class="btn btn-primary stretched-link middle">BUY TICKETS</a>
+       <a href="payment.php" id="btn" id="<?php echo $record['id'];?>" type="button"  class="btn btn-primary stretched-link middle">BUY TICKETS</a>
 </div>
 </div>
 </section>
@@ -191,8 +191,8 @@ while( $record = mysqli_fetch_array($resultset) ) {
   <?php include 'footer.php' ?>
 </div>
 <script text="text/javascript">
-$('input[type=submit]').click(function(e){
-  var id=e.target.name;
+$('input[type=button]').click(function(e){
+  var id=e.target.id;
   
   $.ajax({
     		type:'POST',
