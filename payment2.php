@@ -2,58 +2,6 @@
 session_start();
 include 'header.php';
 ?>
-<html>
-  <head>
-  <style>
-.containers {
-  position: relative;
-  width: 50%;
-}
-
-.image {
-  opacity: 1;
-  display: block;
-  
-  height: auto;
-  transition: .5s ease;
-  backface-visibility: hidden;
-}
-
-.middle {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.container:hover .image {
-  opacity: 0.3;
-}
-
-.container:hover .middle {
-  opacity: 1;
-}
-
-.text {
-  background-color: #4CAF50;
-  color: white;
-  font-size: 16px;
-  padding: 16px 32px;
-}
-#display{
-  float:left;
-  margin: 35px 35px 35px 35px;
-}
-#foot{
-  width:100%;
-  float:right;
-}
-</style>
-</head>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,8 +17,9 @@ include 'header.php';
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://use.fontawesome.com/0e6745b2a3.js"></script>
     <script src="https://kit.fontawesome.com/f0fe6fadbc.js" crossorigin="anonymous"></script>
-    </head>
-    <header>
+    
+<head>
+<header>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
   <div class="container-fluid">
     <li class="navbar-brand "><i class="fas fa-star-of-david" style="font-size:30px;color: white padding:45px"></i> Polaris</li>
@@ -83,10 +32,10 @@ include 'header.php';
    <div class="collapse navbar-collapse" id="navbarResponsive">
      <ul class="navbar-nav ml-auto">
       <li>
-         <a class="nav-link  " href="index.php"><i class="fas fa-home" style="padding:5px"></i>Home</a>
+         <a class="nav-link active " href="index.php"><i class="fas fa-home" style="padding:5px"></i>Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" href="event.php"><i class="fas fa-calendar-week" style="padding:5px"></i>Events</a>
+        <a class="nav-link" href="event.php"><i class="fas fa-calendar-week" style="padding:5px"></i>Events</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="organise.php"><i class="fas fa-marker" style="padding:4px"></i>Organise</a>
@@ -103,9 +52,9 @@ include 'header.php';
             <a class="nav-link" href="includes/logout.inc.php" ><i class="fas fa-user-minus" style="padding:5px"></i>Logout</a>
            </li>';
            echo'<li class="nav-item">
-           <a class="nav-link" href="payment2.php"><i class="fas fa-shopping-cart"></i></a>
+           <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i></a>
            </li>';
-           echo '<li class="nav-item"><a class="nav-link" href="cart.php"><i class="fas fa-clipboard"></i></a></li>';
+           echo '<li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-clipboard"></i></a></li>';
            }
           else
            {
@@ -149,69 +98,150 @@ include 'header.php';
 </nav>
 </header>
 
+<style>
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
 
+.col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
 
-<main>
+.col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
 
-  <?php
-$conn= mysqli_connect("localhost","root","");
-$db = mysqli_select_db($conn,'loginsystem');
-$sql = "SELECT * FROM organise where category='Ngos'";
-$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
-while( $record = mysqli_fetch_array($resultset) ) {
-?>
-<section>
-<div class="container ">
-<div id="display" class="card" style="width: 18rem;">
-<!-- <div class="row card-deck">
-    <div class="col-lg-4 col-md-4 col-12"> -->
-        <div class="card text-center image " >
-        <img class="card-img-top" style="height:18rem" <?php echo "<img src='includes/uploads/".$record['image']."' >"; ?>
-        
-        <div class="card-body ">
-          <h3 class="card-title"><?php echo $record['event']; ?></h3>
-          
-          <!--<p class="card-text"><?php echo $record['desc']; ?></p><hr>-->
-          <div class="card-footer">DATE:<?php echo $record['date']; ?><hr>
-          VENUE:<?php echo $record['venue']; ?><hr>
-          FROM:<?php echo $record['from']; ?><br>
-          TO:<?php echo $record['to']; ?><hr>
-          PRICE: Rs.<?php echo $record['price']; ?><hr>
-          CONTACT:<br><?php echo $record['email']; ?></div></div>
-    </div>
-    <?php //echo $record['id'];?>
-    <?php $_SESSION['buy']=$record['id']?>
-    
-       <a href="payment2.php" id="btn" name="buy" type="button"  class="btn btn-primary stretched-link middle">BUY TICKETS</a>
-</div>
-</div>
-</section>
+.col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
 
-<?php }
-?>
-<div id="foot">
-  <?php include 'footer.php' ?>
-</div>
-<script text="text/javascript">
-$('input[type=button]').click(function(e){
-  var id=e.target.name;
-  
-  $.ajax({
-    		type:'POST',
-    		url:'payment.php',
+.col-25,
+.col-50,
+.col-75 {
+  padding: 0 16px;
+}
 
-    		data: {name:id},
-
-    		success:function(response){
-          window.open("payment.php");
-    			//alert("Marked as Approved");
-    			//location.reload();
-    		}
-    	});
-    	//window.open("status.php");
-		
-	});
-    
-    });
-</script>
+.container {
+  background-color: #f2f2f2;
+  padding: 5px 20px 15px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
    
+}
+
+input[type=text] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+span.price {
+  float: right;
+  color: grey;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
+@media (max-width: 800px) {
+  .row {
+    flex-direction: column-reverse;
+  }
+  .col-25 {
+    margin-bottom: 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+<?php 
+if (isset($_SESSION['userUId'])) 
+{
+  if (isset($_SESSION['buy'])) 
+  {
+   $Id=$_SESSION['buy']; 
+   $_SESSION['cardid']=$Id;
+  ?>
+  <span class="border ">
+   <form  class=" form-horizontal" action="cart.php" enctype="multipart/form-data" method="post">
+          <div class="col-50 ">
+            <h1>Payment</h1>
+            <h4><label for="fname">Accepted Cards</label></h4>
+            <div class="icon-container">
+            
+            <img class="img-responsive" src="http://i76.imgup.net/accepted_c22e0.png"><br>
+
+           <div class="float-left">
+            <label for="cname">Name on Card</label>
+            <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+            <label for="ccnum">Credit card number</label>
+            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+            <label for="expmonth">Exp Month</label>
+            <input type="text" id="expmonth" name="expmonth" placeholder="September">
+            
+
+            <div class="row">
+              <div class="col-50">
+                <label for="expyear">Exp Year</label>
+                <input type="text" id="expyear" name="expyear" placeholder="2018">
+              </div>
+              <div class="col-50">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" placeholder="352">
+              </div>
+            </div>
+          
+          
+          
+            <div class="form-group"> 
+         <div class="col-sm-offset-2 col-sm-10">
+         <button type="submit" class="btn btn-dark border-dark" name="submit1">Submit</button>
+         
+         </div>
+        </div>
+          
+          </div>
+          </div>
+          </div> </div> </form></span>
+          </body>
+          <?php
+           }}else {
+               echo"error";
+           }
+  ?>
+          

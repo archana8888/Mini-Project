@@ -52,9 +52,9 @@ include 'header.php';
             <a class="nav-link" href="includes/logout.inc.php" ><i class="fas fa-user-minus" style="padding:5px"></i>Logout</a>
            </li>';
            echo'<li class="nav-item">
-           <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i></a>
+           <a class="nav-link" href="payment2.php"><i class="fas fa-shopping-cart"></i></a>
            </li>';
-           echo '<li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-clipboard"></i></a></li>';
+           echo '<li class="nav-item"><a class="nav-link" href="cart.php"><i class="fas fa-clipboard"></i></a></li>';
            }
           else
            {
@@ -140,10 +140,34 @@ include 'header.php';
         <div class="box">
         <form method="post">
         <input type="text" class="" style="width:300px; " name="input2" id="input2" placeholder="Total Number of Tickets" name="price">
-        </div>
+        <div class="input-group mb-3">
+ <!-- <div class="input-group-prepend">
+    <label class="input-group-text" for="inputGroupSelect01">Options</label>
+  </div>
+  <select class="custom-select" id="inputGroupSelect01" name="option">
+    <option selected>Choose...</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
+</div>-->
+<!--<?php
+/**if(isset($_POST['submit'])){
+$selected_val = $_POST['option'];  // Storing Selected Value In Variable
+echo "You have selected :" .$selected_val;  // Displaying Selected Value
+}**/
+?> -->     
+<form method="post">
+<select name="taskOption" id="taskOption">
+  <option value="1">First</option>
+  <option value="2">Second</option>
+  <option value="3">Third</option>
+</select> 
+<?php $selectOption = $_POST['taskOption']; ?>
+ </div>
         <br>
         <br>
-        <button class="btn btn-primary " href="#" name="calc" role="button" onclick="calulate" type="submit" value="send">Calculate</a></button>
+        <button class="btn btn-primary " href="#" name="calc" role="button" onclick="calculate" type="submit" value="send">Calculate</a></button>
         </form>
         <!-- <a class="btn btn-primary " href="#" role="button">Check-Out</a> -->
          <br>
@@ -185,14 +209,14 @@ include 'header.php';
  else {
     echo "You need to login first";
       }
-?>
- <?php include 'footer.php' 
-    ?>
-<!-- <script>
+?><script>
 function calculate(){
 var num1 = <?php echo $record['price'] ?>;
-var num2=document.getElementById('input2').value;
+var num2=document.getElementById('taskOption').value;
 var res=parseInt(num1)*parseInt(num2);
 document.write(res);
 }
-</script> -->
+ <?php include 'footer.php' 
+    ?>
+
+</script>
